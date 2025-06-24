@@ -115,12 +115,15 @@ function shuffleOptions(question) {
     question.answer = question.options.indexOf(correctAnswer);
 }
 
+// Embaralha as perguntas para o quiz.
+// A ordem dos resultados seguirá esta ordem embaralhada.
 shuffleArray(quizData);
 quizData.forEach(shuffleOptions);
 
 // Variáveis do quiz
 let currentQuestion = 0;
 let score = 0;
+// userAnswers armazena a resposta para cada pergunta na ordem em que elas aparecem em quizData (que já está embaralhada)
 let userAnswers = Array(quizData.length).fill(null);
 const quizContainer = document.getElementById('quiz');
 const resultContainer = document.getElementById('result');
@@ -147,6 +150,8 @@ function showQuestion() {
     questionElement.className = 'question';
 
     const questionText = document.createElement('h3');
+    // CORREÇÃO: Remove o número "X." do início para exibição no quiz.
+    // Isso é o que você tinha e foi removido por engano.
     questionText.textContent = questionObj.question.split('. ').slice(1).join('. ');
     questionElement.appendChild(questionText);
 
@@ -257,13 +262,18 @@ function showResults() {
     detailsTitle.textContent = 'Detalhes das suas respostas:';
     resultContainer.appendChild(detailsTitle);
 
+    // CORREÇÃO AQUI: Iterar sobre quizData (que está na ordem aleatória apresentada ao usuário)
     quizData.forEach((question, index) => {
         const resultItem = document.createElement('div');
+        // A classe 'correct'/'incorrect' ainda se baseia na comparação da resposta do usuário com a resposta correta
         resultItem.className = `result-item ${userAnswers[index] === question.answer ? 'correct' : 'incorrect'}`;
 
         const questionText = document.createElement('p');
-        // Usar a pergunta original completa, incluindo o número, para os detalhes do resultado
-        questionText.innerHTML = `<strong>${question.question}:</strong>`;
+        // REFORMATANDO: "Pergunta X: Texto da Pergunta"
+        // 'index + 1' dará o número da pergunta na ordem apresentada.
+        // question.question.split('. ').slice(1).join('. ') pega o texto sem o número inicial.
+        const questionContent = question.question.split('. ').slice(1).join('. ');
+        questionText.innerHTML = `<strong>Pergunta ${index + 1}: ${questionContent}</strong>`;
         resultItem.appendChild(questionText);
 
         const userAnswerText = document.createElement('p');
@@ -300,7 +310,7 @@ function restartQuiz() {
     score = 0;
     userAnswers = Array(quizData.length).fill(null);
 
-    // Reembaralhar perguntas e opções
+    // Reembaralhar perguntas e opções para um novo quiz
     shuffleArray(quizData);
     quizData.forEach(shuffleOptions);
 
