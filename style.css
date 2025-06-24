@@ -1,0 +1,341 @@
+/* Estilos Gerais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.main-wrapper {
+    background-color: #1D396C; /* Azul escuro principal da FMP - Fundo de toda a página */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.quiz-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    color: white;
+    width: 100%;
+    max-width: 800px;
+}
+
+.fmp-logo {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+}
+
+.quiz-header h1 {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+/* Container do Quiz Centralizado */
+.container-quiz-only {
+    max-width: 600px;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos das Caixas de Quiz e Resultado */
+.quiz-box, .result-box {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+/* Estilos das Perguntas */
+.question {
+    margin-bottom: 25px;
+}
+
+.question h3 {
+    color: #1D396C; /* Mantido azul escuro para o título da pergunta */
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answers label {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f0f0f0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.answers label:hover {
+    background-color: #e0e0e0;
+    border-color: #A3175B; /* MUDANÇA: Roxo/Vinho da FMP no hover da opção */
+}
+
+.answers input[type="radio"] {
+    margin-right: 15px;
+    transform: scale(1.2);
+    accent-color: #A3175B; /* MUDANÇA: Roxo/Vinho da FMP para o radio button selecionado */
+}
+
+/* Navegação (Botões) */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 15px;
+}
+
+button {
+    flex: 1;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
+    background-color: #3FAB37; /* MUDANÇA: Verde da FMP para os botões */
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #279DD9; /* MUDANÇA: Azul claro da FMP no hover dos botões */
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Progresso */
+.progress {
+    text-align: right;
+    color: #1D396C;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* Resultados */
+#result {
+    display: none;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+.score {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.score h2 {
+    color: #1D396C; /* Mantido azul escuro para o título do resultado */
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.score p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.score strong {
+    color: #A3175B; /* MUDANÇA: Roxo/Vinho da FMP para o destaque da pontuação (consistente com o accent-color) */
+}
+
+.result-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.correct {
+    background-color: #e8f5e9;
+    border-left: 5px solid #3FAB37; /* Verde da FMP para acerto */
+}
+
+.incorrect {
+    background-color: #ffebee;
+    border-left: 5px solid #E40F18; /* Vermelho da FMP para erro */
+}
+
+.result-item p {
+    margin-bottom: 5px;
+}
+
+.result-item strong {
+    color: #666;
+}
+
+/* Footer (Redes Sociais e Crédito) */
+.quiz-footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.quiz-footer img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s;
+}
+
+.quiz-footer img:hover {
+    transform: translateY(-3px);
+}
+
+.author-credit {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-top: 0;
+    text-align: center;
+}
+
+.author-credit a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.author-credit a:hover {
+    color: #279DD9;
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .main-wrapper {
+        padding: 15px;
+    }
+
+    .fmp-logo {
+        max-width: 150px;
+    }
+
+    .quiz-header h1 {
+        font-size: 2rem;
+    }
+
+    .container-quiz-only {
+        max-width: 90%;
+    }
+
+    .quiz-box, .result-box {
+        padding: 20px;
+    }
+
+    .question h3 {
+        font-size: 1.3rem;
+    }
+
+    .answers label {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .answers input[type="radio"] {
+        transform: scale(1.1);
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .score h2 {
+        font-size: 1.8rem;
+    }
+
+    .score p {
+        font-size: 1.1rem;
+    }
+
+    .quiz-footer {
+        gap: 10px;
+    }
+    .social-icons {
+        gap: 20px;
+    }
+    .quiz-footer img {
+        width: 35px;
+        height: 35px;
+    }
+    .author-credit {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fmp-logo {
+        max-width: 120px;
+    }
+
+    .quiz-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .question h3 {
+        font-size: 1.1rem;
+    }
+
+    .answers label {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .social-icons {
+        gap: 15px;
+    }
+}
